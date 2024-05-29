@@ -34,13 +34,29 @@
             }
         }
         .contact-form input, .contact-form textarea {
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
         }
         .contact-form input:focus, .contact-form textarea:focus {
             border-color: #1d4ed8; /* Tailwind blue-700 */
+            box-shadow: 0 0 8px rgba(29, 78, 216, 0.3); /* Slight blue shadow */
         }
         .contact-form button {
             transition: background-color 0.3s, transform 0.3s;
+            background-color: #1d4ed8; /* Tailwind blue-700 */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
         }
         .contact-form button:hover {
             background-color: #2563eb; /* Tailwind blue-600 */
