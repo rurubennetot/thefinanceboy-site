@@ -74,6 +74,14 @@
             font-size: 0.875rem;
             margin-bottom: 0.5rem;
         }
+        /* Ajout des animations */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .fade-in.show {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -85,7 +93,7 @@
                     <a href="index.html" class="nav-link font-bold">Accueil</a>
                     <a href="documentation.html" class="nav-link">Documentation</a>
                     <a href="blog.html" class="nav-link">Blog</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="contact.html" class="nav-link" id="contact-link">Contact</a>
                 </nav>
             </div>
             <div class="flex space-x-4">
@@ -94,7 +102,7 @@
             </div>
         </div>
     </header>
-    <main class="mt-16">
+    <main class="mt-16 fade-in">
         <div class="header">
             <div class="header-overlay"></div>
             <div class="header-content">
@@ -131,8 +139,18 @@
             </div>
         </div>
     </main>
-</body>
-</html>
+    <script>
+        document.getElementById('contact-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelector('main').classList.remove('show');
+            setTimeout(function() {
+                window.location.href = 'contact.html';
+            }, 1000);
+        });
 
+        window.addEventListener('load', function() {
+            document.querySelector('main').classList.add('show');
+        });
+    </script>
 </body>
 </html>
