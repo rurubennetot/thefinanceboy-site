@@ -10,6 +10,7 @@
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
+            overflow-x: hidden;
         }
         .nav-link {
             margin: 0 15px;
@@ -34,13 +35,29 @@
             }
         }
         .contact-form input, .contact-form textarea {
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
         }
         .contact-form input:focus, .contact-form textarea:focus {
             border-color: #1d4ed8; /* Tailwind blue-700 */
+            box-shadow: 0 0 8px rgba(29, 78, 216, 0.3); /* Slight blue shadow */
         }
         .contact-form button {
             transition: background-color 0.3s, transform 0.3s;
+            background-color: #1d4ed8; /* Tailwind blue-700 */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
         }
         .contact-form button:hover {
             background-color: #2563eb; /* Tailwind blue-600 */
@@ -55,6 +72,15 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            animation: slideInFromRight 1s ease-out;
+        }
+        @keyframes slideInFromRight {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
         }
         .header-overlay {
             background-color: rgba(0, 0, 0, 0.5);
@@ -69,6 +95,7 @@
             z-index: 1;
             text-align: center;
             color: white;
+            animation: fadeIn 2s ease-in-out;
         }
         .header-content h1 {
             font-size: 3rem;
@@ -77,6 +104,24 @@
         }
         .header-content p {
             font-size: 1.25rem;
+        }
+        .floating-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #1d4ed8;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        .floating-icon:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -120,6 +165,9 @@
             <div id="response-message" class="mt-4 text-center"></div>
         </div>
     </main>
+    <div class="floating-icon">
+        <i class="fas fa-envelope"></i>
+    </div>
     <script>
         const form = document.getElementById('contact-form');
         const responseMessage = document.getElementById('response-message');
