@@ -34,29 +34,13 @@
             }
         }
         .contact-form input, .contact-form textarea {
-            transition: border-color 0.3s, box-shadow 0.3s;
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 16px;
-            resize: vertical;
+            transition: border-color 0.3s;
         }
         .contact-form input:focus, .contact-form textarea:focus {
             border-color: #1d4ed8; /* Tailwind blue-700 */
-            box-shadow: 0 0 8px rgba(29, 78, 216, 0.3); /* Slight blue shadow */
         }
         .contact-form button {
             transition: background-color 0.3s, transform 0.3s;
-            background-color: #1d4ed8; /* Tailwind blue-700 */
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
         }
         .contact-form button:hover {
             background-color: #2563eb; /* Tailwind blue-600 */
@@ -94,17 +78,9 @@
         .header-content p {
             font-size: 1.25rem;
         }
-        /* Ajout des animations */
-        .fade-in {
-            opacity: 0;
-            transition: opacity 1s;
-        }
-        .fade-in.show {
-            opacity: 1;
-        }
     </style>
 </head>
-<body class="bg-gray-100 fade-in">
+<body class="bg-gray-100">
     <header class="w-full p-4 bg-white shadow-md fixed top-0 left-0 right-0 z-10">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="flex items-center">
@@ -129,7 +105,7 @@
             <p>Nous serions ravis de vous entendre</p>
         </div>
     </div>
-    <main class="mt-16 max-w-6xl mx-auto py-8 px-4 fade-in">
+    <main class="mt-16 max-w-6xl mx-auto py-8 px-4">
         <div class="contact-form">
             <h2 class="text-2xl font-bold mb-4">Envoyez-nous un message</h2>
             <form id="contact-form" action="/.netlify/functions/submit-form" method="POST">
@@ -145,11 +121,6 @@
         </div>
     </main>
     <script>
-        window.addEventListener('load', function() {
-            document.body.classList.add('show');
-        });
-
-        // Form submission
         const form = document.getElementById('contact-form');
         const responseMessage = document.getElementById('response-message');
         form.addEventListener('submit', async (event) => {
