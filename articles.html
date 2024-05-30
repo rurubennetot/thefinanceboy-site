@@ -187,6 +187,218 @@
         .read-more:hover::after {
             width: 100%;
         }
+
+        /* Styles pour le composant interactif */
+        @mixin flexCenter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @content;
+        }
+
+        $blue: #1261fe;
+
+        .interactive-section {
+            width: 100%;
+            height: 100%;
+            background: $blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box-wrap {
+            position: relative;
+            width: 200px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.55);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+
+            @include flexCenter {
+                justify-content: space-between;
+            }
+        }
+
+        .box-wrap div {
+            cursor: pointer;
+            z-index: 99;
+            width: 50%;
+            height: 100%;
+            color: $blue;
+            @include flexCenter;
+        }
+
+        .box-wrap span {
+            position: absolute;
+            display: block;
+            width: 50%;
+            height: 100%;
+            background: white;
+            border-radius: 30px;
+            opacity: 1;
+
+            &::after {
+                opacity: 0.6;
+                position: absolute;
+                top: 10px;
+                content: "";
+                display: block;
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                background: radial-gradient(
+                    50% 50% at 50% 50%,
+                    rgba(255, 255, 255, 0) 0%,
+                    #ffffff 100%
+                );
+                transform: scale(0);
+            }
+        }
+
+        .perLeft {
+            animation: perLeft 0.8s cubic-bezier(0.36, 0, 0.66, -0.56);
+
+            @keyframes perLeft {
+                from {
+                    transform: perspective(500px) rotateY(-20deg);
+                }
+                to {
+                    transform: perspective(0) rotateY(0);
+                }
+            }
+        }
+
+        .perRight {
+            animation: perRight 0.8s cubic-bezier(0.36, 0, 0.66, -0.56);
+
+            @keyframes perRight {
+                from {
+                    transform: perspective(500px) rotateY(20deg);
+                }
+                to {
+                    transform: perspective(0) rotateY(0);
+                }
+            }
+        }
+
+        .selectorLeft {
+            &::after {
+                left: 0;
+                animation: wave 0.6s ease-out 0.1s;
+            }
+            animation: selectorLeft 0.8s forwards;
+            @keyframes selectorLeft {
+                0% {
+                    transform: translateX(0%);
+                }
+
+                12% {
+                    transform: translateX(-10.89%);
+                }
+
+                24% {
+                    transform: translateX(-43.56%);
+                }
+
+                36% {
+                    transform: translateX(-98.01%);
+                }
+
+                54% {
+                    transform: translateX(-75.02%);
+                }
+
+                74% {
+                    transform: translateX(-98.37%);
+                }
+
+                82% {
+                    transform: translateX(-93.75%);
+                }
+
+                92% {
+                    transform: translateX(-99.34%);
+                }
+
+                96% {
+                    transform: translateX(-98.46%);
+                }
+
+                100% {
+                    transform: translateX(-100%);
+                }
+            }
+        }
+
+        .selectorRight {
+            &::after {
+                right: 0;
+                animation: wave 0.6s ease-out 0.1s;
+            }
+
+            animation: selectorRight 0.8s forwards;
+            @keyframes selectorRight {
+                0% {
+                    transform: translateX(0%);
+                }
+
+                12% {
+                    transform: translateX(10.89%);
+                }
+
+                24% {
+                    transform: translateX(43.56%);
+                }
+
+                36% {
+                    transform: translateX(98.01%);
+                }
+
+                54% {
+                    transform: translateX(75.02%);
+                }
+
+                74% {
+                    transform: translateX(98.37%);
+                }
+
+                82% {
+                    transform: translateX(93.75%);
+                }
+
+                92% {
+                    transform: translateX(99.34%);
+                }
+
+                96% {
+                    transform: translateX(98.46%);
+                }
+
+                100% {
+                    transform: translateX(100%);
+                }
+            }
+        }
+
+        @keyframes wave {
+            to {
+                opacity: 0;
+                transform: scale(4);
+                background: radial-gradient(
+                    50% 50% at 50% 50%,
+                    rgba(255, 255, 255, 0) 70%,
+                    #ffffff 100%
+                );
+            }
+        }
+
+        .dr {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            width: 100px;
+        }
     </style>
 </head>
 <body>
@@ -195,8 +407,8 @@
             <img src="https://i.imgur.com/6ipToqv.jpeg" alt="Logo">
             <nav>
                 <a href="index.html" class="nav-link font-bold">Accueil</a>
-                <a href="apropos.html" class="nav-link">Articles</a>
-                <a href="articles.html" class="nav-link">À propos</a>
+                <a href="apropos.html" class="nav-link">À propos</a>
+                <a href="articles.html" class="nav-link">Articles</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
             <div class="social-icons">
@@ -207,8 +419,8 @@
     </header>
     <section class="hero">
         <div class="hero-content">
-            <h1>Articles</h1>
-            <p>L'importance de l'avis</p>
+            <h1>Nos Articles</h1>
+            <p>Découvrez les dernières analyses et conseils financiers</p>
         </div>
     </section>
     <section class="articles-section">
@@ -240,5 +452,50 @@
             <!-- Ajouter d'autres cartes d'article ici -->
         </div>
     </section>
+    <section class="interactive-section">
+        <div class="box-wrap">
+            <div class='active'>Photo</div>
+            <div>Video</div>
+            <span class='selector'></span>
+        </div>
+        <a href="https://dribbble.com/YancyMin" class="dr-url" target="_blank">
+            <img class="dr" src="https://cdn.dribbble.com/assets/logo-footer-hd-a05db77841b4b27c0bf23ec1378e97c988190dfe7d26e32e1faea7269f9e001b.png" alt="">
+        </a>
+    </section>
+    <script>
+        const selector = document.querySelector(".box-wrap span");
+        const boxWrap = document.querySelector(".box-wrap");
+        const items = document.querySelectorAll(".box-wrap div");
+        const activeItem = document.querySelector(".active");
+        let activeWidth = activeItem.offsetWidth;
+
+        selector.style.left = `${activeItem.offsetLeft}px`;
+        selector.style.width = `${activeWidth}px`;
+
+        items.forEach((item) => {
+            item.addEventListener("click", (e) => {
+                let itemPos = item.offsetLeft;
+                selector.style.width = `${activeWidth}px`;
+
+                if (itemPos >= boxWrap.offsetWidth / 2) {
+                    setTimeout(() => {
+                        selector.style.left = `${itemPos}px`;
+                        selector.classList.remove("selectorRight");
+                    }, 1000);
+                    selector.classList.add("selectorRight");
+                    boxWrap.classList.remove("perLeft");
+                    boxWrap.classList.add("perRight");
+                } else {
+                    setTimeout(() => {
+                        selector.style.left = `${itemPos}px`;
+                        selector.classList.remove("selectorLeft");
+                    }, 1000);
+                    selector.classList.add("selectorLeft");
+                    boxWrap.classList.remove("perRight");
+                    boxWrap.classList.add("perLeft");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
