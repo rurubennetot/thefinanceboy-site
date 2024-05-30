@@ -109,7 +109,90 @@
                 transform: translateY(0);
             }
         }
-        .articles-section {
+        .interactive-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -20px;
+            margin-bottom: 40px;
+        }
+        .box-wrap {
+            position: relative;
+            width: 200px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.55);
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .box-wrap div {
+            cursor: pointer;
+            z-index: 99;
+            width: 50%;
+            height: 100%;
+            color: #1261fe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+        }
+        .box-wrap span {
+            position: absolute;
+            display: block;
+            width: 50%;
+            height: 100%;
+            background: white;
+            border-radius: 30px;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+        .perLeft {
+            animation: perLeft 0.8s cubic-bezier(0.36, 0, 0.66, -0.56);
+        }
+        @keyframes perLeft {
+            from {
+                transform: perspective(500px) rotateY(-20deg);
+            }
+            to {
+                transform: perspective(0) rotateY(0);
+            }
+        }
+        .perRight {
+            animation: perRight 0.8s cubic-bezier(0.36, 0, 0.66, -0.56);
+        }
+        @keyframes perRight {
+            from {
+                transform: perspective(500px) rotateY(20deg);
+            }
+            to {
+                transform: perspective(0) rotateY(0);
+            }
+        }
+        .selectorLeft {
+            animation: selectorLeft 0.8s forwards;
+        }
+        @keyframes selectorLeft {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        .selectorRight {
+            animation: selectorRight 0.8s forwards;
+        }
+        @keyframes selectorRight {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        .articles-section, .avis-section {
             max-width: 1200px;
             margin: 40px auto;
             padding: 20px;
@@ -187,218 +270,6 @@
         .read-more:hover::after {
             width: 100%;
         }
-
-        /* Styles pour le composant interactif */
-        @mixin flexCenter {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            @content;
-        }
-
-        $blue: #1261fe;
-
-        .interactive-section {
-            width: 100%;
-            height: 100%;
-            background: $blue;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .box-wrap {
-            position: relative;
-            width: 200px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.55);
-            border-radius: 30px;
-            transition: all 0.3s ease;
-
-            @include flexCenter {
-                justify-content: space-between;
-            }
-        }
-
-        .box-wrap div {
-            cursor: pointer;
-            z-index: 99;
-            width: 50%;
-            height: 100%;
-            color: $blue;
-            @include flexCenter;
-        }
-
-        .box-wrap span {
-            position: absolute;
-            display: block;
-            width: 50%;
-            height: 100%;
-            background: white;
-            border-radius: 30px;
-            opacity: 1;
-
-            &::after {
-                opacity: 0.6;
-                position: absolute;
-                top: 10px;
-                content: "";
-                display: block;
-                width: 40px;
-                height: 40px;
-                border-radius: 100%;
-                background: radial-gradient(
-                    50% 50% at 50% 50%,
-                    rgba(255, 255, 255, 0) 0%,
-                    #ffffff 100%
-                );
-                transform: scale(0);
-            }
-        }
-
-        .perLeft {
-            animation: perLeft 0.8s cubic-bezier(0.36, 0, 0.66, -0.56);
-
-            @keyframes perLeft {
-                from {
-                    transform: perspective(500px) rotateY(-20deg);
-                }
-                to {
-                    transform: perspective(0) rotateY(0);
-                }
-            }
-        }
-
-        .perRight {
-            animation: perRight 0.8s cubic-bezier(0.36, 0, 0.66, -0.56);
-
-            @keyframes perRight {
-                from {
-                    transform: perspective(500px) rotateY(20deg);
-                }
-                to {
-                    transform: perspective(0) rotateY(0);
-                }
-            }
-        }
-
-        .selectorLeft {
-            &::after {
-                left: 0;
-                animation: wave 0.6s ease-out 0.1s;
-            }
-            animation: selectorLeft 0.8s forwards;
-            @keyframes selectorLeft {
-                0% {
-                    transform: translateX(0%);
-                }
-
-                12% {
-                    transform: translateX(-10.89%);
-                }
-
-                24% {
-                    transform: translateX(-43.56%);
-                }
-
-                36% {
-                    transform: translateX(-98.01%);
-                }
-
-                54% {
-                    transform: translateX(-75.02%);
-                }
-
-                74% {
-                    transform: translateX(-98.37%);
-                }
-
-                82% {
-                    transform: translateX(-93.75%);
-                }
-
-                92% {
-                    transform: translateX(-99.34%);
-                }
-
-                96% {
-                    transform: translateX(-98.46%);
-                }
-
-                100% {
-                    transform: translateX(-100%);
-                }
-            }
-        }
-
-        .selectorRight {
-            &::after {
-                right: 0;
-                animation: wave 0.6s ease-out 0.1s;
-            }
-
-            animation: selectorRight 0.8s forwards;
-            @keyframes selectorRight {
-                0% {
-                    transform: translateX(0%);
-                }
-
-                12% {
-                    transform: translateX(10.89%);
-                }
-
-                24% {
-                    transform: translateX(43.56%);
-                }
-
-                36% {
-                    transform: translateX(98.01%);
-                }
-
-                54% {
-                    transform: translateX(75.02%);
-                }
-
-                74% {
-                    transform: translateX(98.37%);
-                }
-
-                82% {
-                    transform: translateX(93.75%);
-                }
-
-                92% {
-                    transform: translateX(99.34%);
-                }
-
-                96% {
-                    transform: translateX(98.46%);
-                }
-
-                100% {
-                    transform: translateX(100%);
-                }
-            }
-        }
-
-        @keyframes wave {
-            to {
-                opacity: 0;
-                transform: scale(4);
-                background: radial-gradient(
-                    50% 50% at 50% 50%,
-                    rgba(255, 255, 255, 0) 70%,
-                    #ffffff 100%
-                );
-            }
-        }
-
-        .dr {
-            position: absolute;
-            bottom: 16px;
-            right: 16px;
-            width: 100px;
-        }
     </style>
 </head>
 <body>
@@ -423,7 +294,14 @@
             <p>Découvrez les dernières analyses et conseils financiers</p>
         </div>
     </section>
-    <section class="articles-section">
+    <section class="interactive-section">
+        <div class="box-wrap">
+            <div class='active' id="articles-btn">Articles</div>
+            <div id="avis-btn">Avis</div>
+            <span class='selector'></span>
+        </div>
+    </section>
+    <section class="articles-section" id="articles-section">
         <div class="articles-grid">
             <div class="article-card">
                 <img src="https://source.unsplash.com/random/400x300?finance" alt="Article Image">
@@ -452,21 +330,29 @@
             <!-- Ajouter d'autres cartes d'article ici -->
         </div>
     </section>
-    <section class="interactive-section">
-        <div class="box-wrap">
-            <div class='active'>Photo</div>
-            <div>Video</div>
-            <span class='selector'></span>
+    <section class="avis-section" id="avis-section" style="display: none;">
+        <div class="articles-grid">
+            <div class="article-card">
+                <img src="https://source.unsplash.com/random/400x300?reviews" alt="Avis Image">
+                <div class="article-content">
+                    <h2 class="article-title">Titre de l'Avis</h2>
+                    <p class="article-excerpt">Ceci est un aperçu de l'avis. Il donne un bref résumé du contenu pour attirer les lecteurs.</p>
+                    <a href="#" class="read-more">Lire la suite</a>
+                </div>
+            </div>
+            <!-- Ajouter d'autres cartes d'avis ici -->
         </div>
-        <a href="https://dribbble.com/YancyMin" class="dr-url" target="_blank">
-            <img class="dr" src="https://cdn.dribbble.com/assets/logo-footer-hd-a05db77841b4b27c0bf23ec1378e97c988190dfe7d26e32e1faea7269f9e001b.png" alt="">
-        </a>
     </section>
     <script>
         const selector = document.querySelector(".box-wrap span");
         const boxWrap = document.querySelector(".box-wrap");
         const items = document.querySelectorAll(".box-wrap div");
         const activeItem = document.querySelector(".active");
+        const articlesBtn = document.getElementById("articles-btn");
+        const avisBtn = document.getElementById("avis-btn");
+        const articlesSection = document.getElementById("articles-section");
+        const avisSection = document.getElementById("avis-section");
+
         let activeWidth = activeItem.offsetWidth;
 
         selector.style.left = `${activeItem.offsetLeft}px`;
@@ -477,7 +363,7 @@
                 let itemPos = item.offsetLeft;
                 selector.style.width = `${activeWidth}px`;
 
-                if (itemPos >= boxWrap.offsetWidth / 2) {
+                if (item.id === "avis-btn") {
                     setTimeout(() => {
                         selector.style.left = `${itemPos}px`;
                         selector.classList.remove("selectorRight");
@@ -485,6 +371,8 @@
                     selector.classList.add("selectorRight");
                     boxWrap.classList.remove("perLeft");
                     boxWrap.classList.add("perRight");
+                    articlesSection.style.display = "none";
+                    avisSection.style.display = "block";
                 } else {
                     setTimeout(() => {
                         selector.style.left = `${itemPos}px`;
@@ -493,9 +381,12 @@
                     selector.classList.add("selectorLeft");
                     boxWrap.classList.remove("perRight");
                     boxWrap.classList.add("perLeft");
+                    avisSection.style.display = "none";
+                    articlesSection.style.display = "block";
                 }
             });
         });
     </script>
 </body>
 </html>
+
