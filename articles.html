@@ -146,7 +146,7 @@
             background: white;
             border-radius: 30px;
             opacity: 1;
-            transition: all 0.3s ease;
+            transition: left 0.3s ease;
         }
         .articles-section, .avis-section {
             max-width: 1200px;
@@ -309,13 +309,12 @@
 
         function updateSelectorPosition() {
             const activeItem = document.querySelector(".box-wrap .active");
-            const activeItemLeft = activeItem.offsetLeft;
-            selector.style.left = `${activeItemLeft}px`;
+            selector.style.left = `${activeItem.offsetLeft}px`;
             selector.style.width = `${activeItem.offsetWidth}px`;
         }
 
         items.forEach((item) => {
-            item.addEventListener("click", (e) => {
+            item.addEventListener("click", () => {
                 items.forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
 
