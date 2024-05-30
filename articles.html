@@ -148,50 +148,6 @@
             opacity: 1;
             transition: all 0.3s ease;
         }
-        .perLeft {
-            animation: perLeft 0.8s cubic-bezier(0.36, 0, 0.66, -0.56);
-        }
-        @keyframes perLeft {
-            from {
-                transform: perspective(500px) rotateY(-20deg);
-            }
-            to {
-                transform: perspective(0) rotateY(0);
-            }
-        }
-        .perRight {
-            animation: perRight 0.8s cubic-bezier(0.36, 0, 0.66, -0.56);
-        }
-        @keyframes perRight {
-            from {
-                transform: perspective(500px) rotateY(20deg);
-            }
-            to {
-                transform: perspective(0) rotateY(0);
-            }
-        }
-        .selectorLeft {
-            animation: selectorLeft 0.8s forwards;
-        }
-        @keyframes selectorLeft {
-            0% {
-                transform: translateX(0%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-        .selectorRight {
-            animation: selectorRight 0.8s forwards;
-        }
-        @keyframes selectorRight {
-            0% {
-                transform: translateX(0%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
-        }
         .articles-section, .avis-section {
             max-width: 1200px;
             margin: 40px auto;
@@ -345,48 +301,37 @@
     </section>
     <script>
         const selector = document.querySelector(".box-wrap span");
-        const boxWrap = document.querySelector(".box-wrap");
         const items = document.querySelectorAll(".box-wrap div");
-        const activeItem = document.querySelector(".active");
         const articlesBtn = document.getElementById("articles-btn");
         const avisBtn = document.getElementById("avis-btn");
         const articlesSection = document.getElementById("articles-section");
         const avisSection = document.getElementById("avis-section");
 
-        let activeWidth = activeItem.offsetWidth;
-
-        selector.style.left = `${activeItem.offsetLeft}px`;
-        selector.style.width = `${activeWidth}px`;
+        function updateSelectorPosition() {
+            const activeItem = document.querySelector(".box-wrap .active");
+            const activeItemLeft = activeItem.offsetLeft;
+            selector.style.left = `${activeItemLeft}px`;
+            selector.style.width = `${activeItem.offsetWidth}px`;
+        }
 
         items.forEach((item) => {
             item.addEventListener("click", (e) => {
-                let itemPos = item.offsetLeft;
-                selector.style.width = `${activeWidth}px`;
+                items.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
 
                 if (item.id === "avis-btn") {
-                    setTimeout(() => {
-                        selector.style.left = `${itemPos}px`;
-                        selector.classList.remove("selectorRight");
-                    }, 1000);
-                    selector.classList.add("selectorRight");
-                    boxWrap.classList.remove("perLeft");
-                    boxWrap.classList.add("perRight");
                     articlesSection.style.display = "none";
                     avisSection.style.display = "block";
                 } else {
-                    setTimeout(() => {
-                        selector.style.left = `${itemPos}px`;
-                        selector.classList.remove("selectorLeft");
-                    }, 1000);
-                    selector.classList.add("selectorLeft");
-                    boxWrap.classList.remove("perRight");
-                    boxWrap.classList.add("perLeft");
                     avisSection.style.display = "none";
                     articlesSection.style.display = "block";
                 }
+                updateSelectorPosition();
             });
         });
+
+        window.addEventListener('resize', updateSelectorPosition);
+        window.addEventListener('load', updateSelectorPosition);
     </script>
 </body>
 </html>
-
