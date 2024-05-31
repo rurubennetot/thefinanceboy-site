@@ -39,20 +39,22 @@
             font-size: 1.25rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            z-index: 10;
         }
-        .beam {
+        .beam, .button {
             position: absolute;
-            width: 2px;
-            background-color: #fff;
-            transform-origin: top;
             transition: all 0.3s ease;
             opacity: 0;
         }
-        .beam.show {
+        .beam.show, .button.show {
             opacity: 1;
         }
+        .beam {
+            width: 2px;
+            background-color: #fff;
+            transform-origin: top;
+        }
         .button {
-            position: absolute;
             width: 120px;
             height: 40px;
             background-color: #1F1E1E;
@@ -61,60 +63,35 @@
             line-height: 40px;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            opacity: 0;
         }
-        .button.show {
-            opacity: 1;
-        }
-        .en-cours {
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .lexique {
-            top: 50%;
-            left: 80%;
-            transform: translate(-50%, -50%);
-        }
-        .analyses-actuelles {
-            top: 80%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .indicateur {
-            top: 50%;
-            left: 20%;
-            transform: translate(-50%, -50%);
-        }
-        .analyses-passes {
-            top: 80%;
-            left: 20%;
-            transform: translate(-50%, -50%);
-        }
+        .en-cours { top: 20%; left: 50%; transform: translate(-50%, -50%); }
+        .lexique { top: 50%; left: 20%; transform: translate(-50%, -50%); }
+        .analyses-actuelles { top: 50%; left: 80%; transform: translate(-50%, -50%); }
+        .indicateur { top: 80%; left: 20%; transform: translate(-50%, -50%); }
+        .analyses-passees { top: 80%; left: 80%; transform: translate(-50%, -50%); }
     </style>
 </head>
 <body>
     <div class="mind-map">
-        <div class="central-button" onclick="showBeams()">Trading</div>
-        <div class="beam en-cours" style="height: 30vh; top: 50%; left: 50%; transform: translate(-50%, -100%) rotate(0deg);"></div>
-        <div class="beam lexique" style="height: 30vh; top: 50%; left: 50%; transform: translate(-50%, -100%) rotate(72deg);"></div>
-        <div class="beam analyses-actuelles" style="height: 30vh; top: 50%; left: 50%; transform: translate(-50%, -100%) rotate(144deg);"></div>
-        <div class="beam indicateur" style="height: 30vh; top: 50%; left: 50%; transform: translate(-50%, -100%) rotate(216deg);"></div>
-        <div class="beam analyses-passes" style="height: 30vh; top: 50%; left: 50%; transform: translate(-50%, -100%) rotate(288deg);"></div>
+        <div class="central-button" onclick="toggleMindMap()">Trading</div>
+        <div class="beam en-cours" style="height: 30vh; top: 30%; left: 50%; transform: translate(-50%, -50%);"></div>
+        <div class="beam lexique" style="height: 30vh; top: 65%; left: 35%; transform: translate(-50%, -50%);"></div>
+        <div class="beam analyses-actuelles" style="height: 30vh; top: 65%; left: 65%; transform: translate(-50%, -50%);"></div>
+        <div class="beam indicateur" style="height: 30vh; top: 80%; left: 20%; transform: translate(-50%, -50%);"></div>
+        <div class="beam analyses-passees" style="height: 30vh; top: 80%; left: 80%; transform: translate(-50%, -50%);"></div>
         <a href="en-cours.html" class="button en-cours">En cours</a>
         <a href="lexique.html" class="button lexique">Lexique</a>
         <a href="analyses-actuelles.html" class="button analyses-actuelles">Analyses Actuelles</a>
         <a href="indicateur.html" class="button indicateur">Indicateur</a>
-        <a href="analyses-passes.html" class="button analyses-passes">Analyses Passées</a>
+        <a href="analyses-passees.html" class="button analyses-passees">Analyses Passées</a>
     </div>
     <script>
-        function showBeams() {
+        function toggleMindMap() {
             document.querySelectorAll('.beam').forEach(beam => {
-                beam.classList.add('show');
+                beam.classList.toggle('show');
             });
             document.querySelectorAll('.button').forEach(button => {
-                button.classList.add('show');
+                button.classList.toggle('show');
             });
         }
     </script>
