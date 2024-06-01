@@ -3,102 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheFinanceBoy - Trading</title>
+    <title>Mindmap - Trading</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #000;
-            color: #fff;
-            height: 100vh;
+            background-color: #f3f4f6;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            height: 100vh;
+            margin: 0;
         }
-        .mind-map {
+        .mindmap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            height: 80%;
         }
-        .central-button {
+        .bubble {
             position: absolute;
-            width: 150px;
-            height: 150px;
-            background-color: #1F1E1E;
+            background-color: #4A90E2;
+            color: white;
+            padding: 20px;
             border-radius: 50%;
             text-align: center;
-            line-height: 150px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-        }
-        .button {
-            position: absolute;
             width: 120px;
             height: 120px;
-            background-color: #1F1E1E;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 120px;
-            font-size: 1rem;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .button.show {
-            opacity: 1;
+        .central-bubble {
+            font-size: 1.5rem;
+            width: 150px;
+            height: 150px;
         }
-        .en-cours { top: 20%; left: 50%; transform: translate(-50%, -50%); }
-        .lexique { top: 70%; left: 20%; transform: translate(-50%, -50%); }
-        .analyses-actuelles { top: 30%; left: 80%; transform: translate(-50%, -50%); }
-        .indicateur { top: 80%; left: 80%; transform: translate(-50%, -50%); }
-        .analyses-passees { top: 70%; left: 30%; transform: translate(-50%, -50%); }
-        .line {
-            stroke: #888;
-            stroke-width: 2;
-            fill: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .bubble:nth-child(2) { top: 20%; left: 50%; transform: translate(-50%, -50%); }
+        .bubble:nth-child(3) { top: 50%; left: 80%; transform: translate(-50%, -50%); }
+        .bubble:nth-child(4) { top: 80%; left: 50%; transform: translate(-50%, -50%); }
+        .bubble:nth-child(5) { top: 50%; left: 20%; transform: translate(-50%, -50%); }
+        .bubble:nth-child(6) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .bubble-connector {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #4A90E2;
         }
-        .line.show {
-            opacity: 1;
-        }
+        .connector-1 { top: 50%; left: 50%; transform: rotate(45deg) translate(40px, -40px); height: 200px; }
+        .connector-2 { top: 50%; left: 50%; transform: rotate(90deg) translate(80px, 0); height: 200px; }
+        .connector-3 { top: 50%; left: 50%; transform: rotate(135deg) translate(40px, 40px); height: 200px; }
+        .connector-4 { top: 50%; left: 50%; transform: rotate(225deg) translate(-40px, 40px); height: 200px; }
+        .connector-5 { top: 50%; left: 50%; transform: rotate(-45deg) translate(-40px, -40px); height: 200px; }
     </style>
 </head>
 <body>
-    <div class="mind-map">
-        <div class="central-button" onclick="toggleMindMap()">Trading</div>
-        <svg width="100%" height="100%" class="lines">
-            <path class="line en-cours-line" d="M50% 50% Q50% 35%, 50% 20%"></path>
-            <path class="line lexique-line" d="M50% 50% Q35% 55%, 20% 70%"></path>
-            <path class="line analyses-actuelles-line" d="M50% 50% Q65% 40%, 80% 30%"></path>
-            <path class="line indicateur-line" d="M50% 50% Q65% 65%, 80% 80%"></path>
-            <path class="line analyses-passees-line" d="M50% 50% Q40% 60%, 30% 70%"></path>
-        </svg>
-        <a href="en-cours.html" class="button en-cours">En cours</a>
-        <a href="lexique.html" class="button lexique">Lexique</a>
-        <a href="analyses-actuelles.html" class="button analyses-actuelles">Analyses Actuelles</a>
-        <a href="indicateur.html" class="button indicateur">Indicateur</a>
-        <a href="analyses-passees.html" class="button analyses-passees">Analyses Passées</a>
+    <div class="mindmap">
+        <div class="bubble central-bubble">Trading</div>
+        <div class="bubble">Bubble 1</div>
+        <div class="bubble">Bubble 2</div>
+        <div class="bubble">Bubble 3</div>
+        <div class="bubble">Bubble 4</div>
+        <div class="bubble">Bubble 5</div>
+        <div class="bubble-connector connector-1"></div>
+        <div class="bubble-connector connector-2"></div>
+        <div class="bubble-connector connector-3"></div>
+        <div class="bubble-connector connector-4"></div>
+        <div class="bubble-connector connector-5"></div>
     </div>
-    <script>
-        function toggleMindMap() {
-            document.querySelectorAll('.button').forEach(button => {
-                button.classList.toggle('show');
-            });
-            document.querySelectorAll('.line').forEach(line => {
-                line.classList.toggle('show');
-            });
-        }
-    </script>
 </body>
 </html>
