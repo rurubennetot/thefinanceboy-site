@@ -76,8 +76,21 @@
         const lines = document.querySelectorAll('.line.hidden');
 
         tradingNode.addEventListener('click', () => {
-            nodes.forEach(node => node.classList.toggle('hidden'));
-            lines.forEach(line => line.classList.toggle('hidden'));
+            const isHidden = nodes[0].classList.contains('hidden');
+            nodes.forEach(node => {
+                if (isHidden) {
+                    node.classList.remove('hidden');
+                } else {
+                    node.classList.add('hidden');
+                }
+            });
+            lines.forEach(line => {
+                if (isHidden) {
+                    line.classList.remove('hidden');
+                } else {
+                    line.classList.add('hidden');
+                }
+            });
         });
     </script>
 </body>
