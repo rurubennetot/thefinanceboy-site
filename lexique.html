@@ -12,24 +12,100 @@
         body {
             font-family: 'Open Sans', sans-serif;
             background-color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
             color: #fff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .content {
-            text-align: center;
+        .search-container {
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+        }
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            font-size: 1rem;
+        }
+        .search-button {
+            padding: 10px;
+            border: none;
+            background-color: #1a202c;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .lexique {
+            width: 100%;
+            max-width: 800px;
+        }
+        .lexique-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #1a202c;
+        }
+        .lexique-item h3 {
+            margin: 0;
+            font-family: 'Belanosima', sans-serif;
+        }
+        .lexique-item p {
+            margin: 5px 0 0;
+        }
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #1a202c;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Lexique</h1>
-        <p>Bienvenue sur la page du lexique.</p>
-        <a href="index.html" class="darksoul-button">Retour</a>
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="Rechercher un terme ou une définition...">
+        <button class="search-button" onclick="searchLexique()">Rechercher</button>
     </div>
+    <div id="lexique" class="lexique">
+        <!-- Les éléments du lexique vont ici -->
+        <div class="lexique-item">
+            <h3>Forex</h3>
+            <p>Le marché des changes, où les devises sont échangées.</p>
+        </div>
+        <div class="lexique-item">
+            <h3>Indice</h3>
+            <p>Un indice boursier est un indicateur de la performance d'un ensemble d'actions.</p>
+        </div>
+        <!-- Ajoutez plus d'éléments ici -->
+    </div>
+    <button class="back-button" onclick="window.location.href='index.html'">Retour</button>
+    <script>
+        function searchLexique() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const items = document.querySelectorAll('.lexique-item');
+            
+            items.forEach(item => {
+                const term = item.querySelector('h3').textContent.toLowerCase();
+                const definition = item.querySelector('p').textContent.toLowerCase();
+                
+                if (term.includes(input) || definition.includes(input)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
