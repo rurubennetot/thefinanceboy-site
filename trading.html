@@ -27,12 +27,12 @@
         }
         .central-button {
             position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             background-color: #1F1E1E;
             border-radius: 50%;
             text-align: center;
-            line-height: 200px;
+            line-height: 150px;
             font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -43,12 +43,12 @@
         }
         .button {
             position: absolute;
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             background-color: #1F1E1E;
             border-radius: 50%;
             text-align: center;
-            line-height: 150px;
+            line-height: 120px;
             font-size: 1rem;
             cursor: pointer;
             opacity: 0;
@@ -57,13 +57,13 @@
         .button.show {
             opacity: 1;
         }
-        .en-cours { top: 15%; left: 50%; transform: translate(-50%, -50%); }
-        .lexique { top: 75%; left: 25%; transform: translate(-50%, -50%); }
-        .analyses-actuelles { top: 25%; left: 85%; transform: translate(-50%, -50%); }
-        .indicateur { top: 85%; left: 75%; transform: translate(-50%, -50%); }
-        .analyses-passees { top: 50%; left: 10%; transform: translate(-50%, -50%); }
+        .en-cours { top: 20%; left: 50%; transform: translate(-50%, -50%); }
+        .lexique { top: 70%; left: 20%; transform: translate(-50%, -50%); }
+        .analyses-actuelles { top: 30%; left: 80%; transform: translate(-50%, -50%); }
+        .indicateur { top: 80%; left: 80%; transform: translate(-50%, -50%); }
+        .analyses-passees { top: 70%; left: 30%; transform: translate(-50%, -50%); }
         .line {
-            stroke: white;
+            stroke: #888;
             stroke-width: 2;
             fill: none;
             opacity: 0;
@@ -78,11 +78,11 @@
     <div class="mind-map">
         <div class="central-button" onclick="toggleMindMap()">Trading</div>
         <svg width="100%" height="100%" class="lines">
-            <path class="line en-cours-line" d="M50% 50% C50% 30%, 55% 30%, 55% 15%"></path>
-            <path class="line lexique-line" d="M50% 50% C40% 60%, 35% 65%, 25% 75%"></path>
-            <path class="line analyses-actuelles-line" d="M50% 50% C60% 40%, 75% 35%, 85% 25%"></path>
-            <path class="line indicateur-line" d="M50% 50% C60% 60%, 70% 70%, 75% 85%"></path>
-            <path class="line analyses-passees-line" d="M50% 50% C40% 50%, 25% 50%, 10% 50%"></path>
+            <path class="line en-cours-line" d="M50% 50% Q50% 35%, 50% 20%"></path>
+            <path class="line lexique-line" d="M50% 50% Q35% 55%, 20% 70%"></path>
+            <path class="line analyses-actuelles-line" d="M50% 50% Q65% 40%, 80% 30%"></path>
+            <path class="line indicateur-line" d="M50% 50% Q65% 65%, 80% 80%"></path>
+            <path class="line analyses-passees-line" d="M50% 50% Q40% 60%, 30% 70%"></path>
         </svg>
         <a href="en-cours.html" class="button en-cours">En cours</a>
         <a href="lexique.html" class="button lexique">Lexique</a>
