@@ -5,76 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mindmap - Trading</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Belanosima&family=Rubik+Vinyl&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Belanosima&family=Rubik+Vinyl&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: #f3f4f6;
+            background-color: #000; /* Fond d'écran noir */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
-        .mindmap {
+        .darksoul-glowing-button {
+            margin: auto;
+            width: 250px;
+            height: 70px;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            width: 80%;
-            height: 80%;
+            border-radius: 35px;
+            animation: rotation 3s linear 0s infinite;
         }
-        .bubble {
+        .darksoul-glowing-button:hover {
+            background: linear-gradient(var(--gradient-angle), rgb(255, 255, 255), rgb(0, 0, 0));
+        }
+        .darksoul-button {
+            width: 98%;
+            height: 94%;
+            background-color: rgba(0, 0, 0, 0.903);
+            margin: auto;
+            outline: none;
+            border: none;
+            border-radius: 35px;
+            color: rgb(255, 255, 255);
+            font-size: x-large;
+            font-family: 'Belanosima', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .disclaimer {
+            font-family: 'Belanosima', sans-serif;
             position: absolute;
-            background-color: #4A90E2;
-            color: white;
-            padding: 20px;
-            border-radius: 50%;
+            bottom: 0px; 
+            left: 0; 
+            margin-left: auto; 
+            right: 0; 
+            margin-right: auto; 
+            width: fit-content;
+            color: rgb(82, 82, 82);
             text-align: center;
-            width: 120px;
-            height: 120px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .central-bubble {
-            font-size: 1.5rem;
-            width: 150px;
-            height: 150px;
+        .disclaimer a {
+            text-decoration: none;
+            color: #000000;
         }
-        .bubble:nth-child(2) { top: 20%; left: 50%; transform: translate(-50%, -50%); }
-        .bubble:nth-child(3) { top: 50%; left: 80%; transform: translate(-50%, -50%); }
-        .bubble:nth-child(4) { top: 80%; left: 50%; transform: translate(-50%, -50%); }
-        .bubble:nth-child(5) { top: 50%; left: 20%; transform: translate(-50%, -50%); }
-        .bubble:nth-child(6) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-        .bubble-connector {
+        .disclaimer a:hover {
+            font-weight: bolder;
+        }
+        ::selection {
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+        }
+        @keyframes rotation {
+            0% {
+                --gradient-angle: 0deg;
+            }
+            100% {
+                --gradient-angle: 360deg;
+            }    
+        }
+        @property --gradient-angle {
+            syntax: "<angle>";
+            initial-value: 0deg;
+            inherits: false;
+        }
+        @media only screen and (max-width: 600px) {
+            body {
+                margin: 0;
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                background: linear-gradient(180deg, rgb(21, 21, 21) 50%, rgb(238, 238, 238) 50%);
+            }
+        }
+        .bubble-button {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background-color: #4A90E2;
         }
-        .connector-1 { top: 50%; left: 50%; transform: rotate(45deg) translate(40px, -40px); height: 200px; }
-        .connector-2 { top: 50%; left: 50%; transform: rotate(90deg) translate(80px, 0); height: 200px; }
-        .connector-3 { top: 50%; left: 50%; transform: rotate(135deg) translate(40px, 40px); height: 200px; }
-        .connector-4 { top: 50%; left: 50%; transform: rotate(225deg) translate(-40px, 40px); height: 200px; }
-        .connector-5 { top: 50%; left: 50%; transform: rotate(-45deg) translate(-40px, -40px); height: 200px; }
+        .show-buttons .bubble-button {
+            opacity: 1;
+        }
+        .bubble-button:nth-child(2) { top: 20%; left: 30%; transform: translate(-50%, 0); }
+        .bubble-button:nth-child(3) { top: 50%; left: 80%; transform: translate(0, -50%); }
+        .bubble-button:nth-child(4) { top: 80%; left: 40%; transform: translate(-50%, 0); }
+        .bubble-button:nth-child(5) { top: 50%; left: 10%; transform: translate(0, -50%); }
+        .bubble-button:nth-child(6) { top: 20%; left: 70%; transform: translate(-50%, -50%); }
     </style>
 </head>
 <body>
     <div class="mindmap">
-        <div class="bubble central-bubble">Trading</div>
-        <div class="bubble">Bubble 1</div>
-        <div class="bubble">Bubble 2</div>
-        <div class="bubble">Bubble 3</div>
-        <div class="bubble">Bubble 4</div>
-        <div class="bubble">Bubble 5</div>
-        <div class="bubble-connector connector-1"></div>
-        <div class="bubble-connector connector-2"></div>
-        <div class="bubble-connector connector-3"></div>
-        <div class="bubble-connector connector-4"></div>
-        <div class="bubble-connector connector-5"></div>
+        <div class="darksoul-glowing-button central-button">
+            <button class="darksoul-button" type="button" id="centralButton">Trading</button>
+        </div>
+        <div class="darksoul-glowing-button bubble-button">
+            <button class="darksoul-button" type="button">Indicateur</button>
+        </div>
+        <div class="darksoul-glowing-button bubble-button">
+            <button class="darksoul-button" type="button">En cours</button>
+        </div>
+        <div class="darksoul-glowing-button bubble-button">
+            <button class="darksoul-button" type="button">Analyses passées</button>
+        </div>
+        <div class="darksoul-glowing-button bubble-button">
+            <button class="darksoul-button" type="button">Lexique</button>
+        </div>
+        <div class="darksoul-glowing-button bubble-button">
+            <button class="darksoul-button" type="button">Analyses actuelles</button>
+        </div>
     </div>
+    <script>
+        document.getElementById('centralButton').addEventListener('click', function() {
+            document.querySelector('.mindmap').classList.toggle('show-buttons');
+        });
+    </script>
 </body>
 </html>
