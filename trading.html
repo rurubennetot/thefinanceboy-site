@@ -37,6 +37,9 @@
         }
         .line {
             position: absolute;
+            stroke: white;
+            stroke-width: 2;
+            fill: transparent;
             transition: opacity 0.5s;
         }
         .line.hidden {
@@ -54,19 +57,19 @@
         <div class="node hidden" id="en-cours" style="top: 90%; left: 50%;">En cours</div>
 
         <svg class="line hidden" id="line-analyses-actuelles" width="100%" height="100%">
-            <path d="M 50% 50% C 40% 40%, 30% 30%, 20% 20%" stroke="white" fill="transparent"/>
+            <path d="M 50% 50% C 45% 45%, 35% 35%, 20% 20%" />
         </svg>
         <svg class="line hidden" id="line-indicateur" width="100%" height="100%">
-            <path d="M 50% 50% C 60% 40%, 70% 30%, 80% 20%" stroke="white" fill="transparent"/>
+            <path d="M 50% 50% C 55% 45%, 65% 35%, 80% 20%" />
         </svg>
         <svg class="line hidden" id="line-analyses-passees" width="100%" height="100%">
-            <path d="M 50% 50% C 60% 60%, 70% 70%, 80% 80%" stroke="white" fill="transparent"/>
+            <path d="M 50% 50% C 55% 55%, 65% 65%, 80% 80%" />
         </svg>
         <svg class="line hidden" id="line-lexique" width="100%" height="100%">
-            <path d="M 50% 50% C 40% 60%, 30% 70%, 20% 80%" stroke="white" fill="transparent"/>
+            <path d="M 50% 50% C 45% 55%, 35% 65%, 20% 80%" />
         </svg>
         <svg class="line hidden" id="line-en-cours" width="100%" height="100%">
-            <path d="M 50% 50% C 50% 70%, 50% 80%, 50% 90%" stroke="white" fill="transparent"/>
+            <path d="M 50% 50% C 50% 60%, 50% 70%, 50% 90%" />
         </svg>
     </div>
 
@@ -92,10 +95,6 @@
                 }
             });
         });
-
-        // Debugging pour vérifier les éléments et leur état
-        console.log("Éléments de nœuds :", nodes);
-        console.log("Éléments de lignes :", lines);
     </script>
 </body>
 </html>
