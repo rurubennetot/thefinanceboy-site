@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TheFinanceBoy - Trading</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -42,20 +41,8 @@
             transform: translate(-50%, -50%);
             z-index: 10;
         }
-        .beam, .button {
-            position: absolute;
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-        .beam.show, .button.show {
-            opacity: 1;
-        }
-        .beam {
-            width: 2px;
-            background-color: #fff;
-            transform-origin: top;
-        }
         .button {
+            position: absolute;
             width: 150px;
             height: 50px;
             background-color: #1F1E1E;
@@ -64,66 +51,47 @@
             line-height: 50px;
             font-size: 1rem;
             cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        .en-cours { top: 20%; left: 50%; transform: translate(-50%, -50%); }
-        .lexique { top: 50%; left: 20%; transform: translate(-50%, -50%); }
-        .analyses-actuelles { top: 50%; left: 80%; transform: translate(-50%, -50%); }
-        .indicateur { top: 80%; left: 30%; transform: translate(-50%, -50%); }
-        .analyses-passees { top: 80%; left: 70%; transform: translate(-50%, -50%); }
-
-        .beam.en-cours {
-            height: 30%;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(90deg);
+        .button.show {
+            opacity: 1;
         }
-        .beam.lexique {
-            height: 20%;
-            top: 50%;
-            left: 35%;
-            transform: translate(-50%, -50%) rotate(60deg);
-        }
-        .beam.analyses-actuelles {
-            height: 20%;
-            top: 50%;
-            left: 65%;
-            transform: translate(-50%, -50%) rotate(-60deg);
-        }
-        .beam.indicateur {
-            height: 30%;
-            top: 65%;
-            left: 40%;
-            transform: translate(-50%, -50%) rotate(30deg);
-        }
-        .beam.analyses-passees {
-            height: 30%;
-            top: 65%;
-            left: 60%;
-            transform: translate(-50%, -50%) rotate(-30deg);
+        .en-cours { top: 20%; left: 55%; transform: translate(-50%, -50%); }
+        .lexique { top: 70%; left: 30%; transform: translate(-50%, -50%); }
+        .analyses-actuelles { top: 30%; left: 80%; transform: translate(-50%, -50%); }
+        .indicateur { top: 80%; left: 70%; transform: translate(-50%, -50%); }
+        .analyses-passees { top: 85%; left: 40%; transform: translate(-50%, -50%); }
+        .line {
+            stroke: white;
+            stroke-width: 2;
+            fill: none;
         }
     </style>
 </head>
 <body>
     <div class="mind-map">
         <div class="central-button" onclick="toggleMindMap()">Trading</div>
-        <div class="beam en-cours"></div>
-        <div class="beam lexique"></div>
-        <div class="beam analyses-actuelles"></div>
-        <div class="beam indicateur"></div>
-        <div class="beam analyses-passees"></div>
         <a href="en-cours.html" class="button en-cours">En cours</a>
         <a href="lexique.html" class="button lexique">Lexique</a>
         <a href="analyses-actuelles.html" class="button analyses-actuelles">Analyses Actuelles</a>
         <a href="indicateur.html" class="button indicateur">Indicateur</a>
         <a href="analyses-passees.html" class="button analyses-passees">Analyses Passées</a>
+        <svg width="100%" height="100%" class="lines">
+            <path class="line en-cours-line" d="M50% 50% C55% 40%, 55% 30%, 55% 20%"></path>
+            <path class="line lexique-line" d="M50% 50% C40% 60%, 35% 65%, 30% 70%"></path>
+            <path class="line analyses-actuelles-line" d="M50% 50% C60% 40%, 70% 35%, 80% 30%"></path>
+            <path class="line indicateur-line" d="M50% 50% C60% 60%, 65% 70%, 70% 80%"></path>
+            <path class="line analyses-passees-line" d="M50% 50% C45% 65%, 45% 75%, 40% 85%"></path>
+        </svg>
     </div>
     <script>
         function toggleMindMap() {
-            document.querySelectorAll('.beam').forEach(beam => {
-                beam.classList.toggle('show');
-            });
             document.querySelectorAll('.button').forEach(button => {
                 button.classList.toggle('show');
+            });
+            document.querySelectorAll('.line').forEach(line => {
+                line.classList.toggle('show');
             });
         }
     </script>
