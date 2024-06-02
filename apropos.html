@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,13 +14,13 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            color: #000;
-            background-color: #f3f4f6;
+            color: #fff;
+            background-color: #000;
             overflow-x: hidden;
         }
+
         header {
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #000;
             position: fixed;
             width: 100%;
             z-index: 10;
@@ -27,6 +28,7 @@
             left: 0;
             padding: 20px 0;
         }
+
         .header-content {
             display: flex;
             justify-content: center;
@@ -35,30 +37,35 @@
             margin: auto;
             padding: 0 20px;
         }
+
         .header-content img {
-            height: 50px;
+            height: 30px;
+            margin-right: 40px;
         }
+
+        .header-content nav {
+            display: flex;
+            gap: 20px;
+        }
+
         .header-content nav a {
-            margin-left: 20px;
             font-weight: 700;
             text-decoration: none;
-            color: #000;
+            color: #fff;
             position: relative;
             overflow: hidden;
         }
-        .header-content .social-icons a {
-            margin-left: 10px;
-            color: #000;
-        }
-        .header-content .social-icons a:hover {
+
+        .header-content nav a:hover {
             color: #1d4ed8;
         }
+
         .hero {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-image: url('https://source.unsplash.com/random/1920x1080?finance');
+            background-image: url('https://i.imgur.com/bejcdVs.png');
             background-size: cover;
             background-position: center;
             height: 80vh;
@@ -67,6 +74,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .hero::before {
             content: "";
             position: absolute;
@@ -74,81 +82,102 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
         }
+
         .hero-content {
             position: relative;
             z-index: 1;
             animation: float 3s ease-in-out infinite;
         }
+
         .hero h1 {
-            font-size: 5rem;
-            margin-bottom: 20px;
+            font-size: 4rem;
+            margin-bottom: 10px;
             animation: fadeInDown 2s ease-in-out;
         }
+
         .hero p {
-            font-size: 2rem;
+            font-size: 1.5rem;
             animation: fadeInUp 2s ease-in-out;
         }
+
         @keyframes fadeInDown {
             0% {
                 opacity: 0;
-                transform: translateY(-10px); /* Moins flotter */
+                transform: translateY(-10px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
         @keyframes fadeInUp {
             0% {
                 opacity: 0;
-                transform: translateY(10px); /* Moins flotter */
+                transform: translateY(10px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
         @keyframes float {
             0% {
                 transform: translateY(0);
             }
+
             50% {
-                transform: translateY(-5px); /* Moins flotter */
+                transform: translateY(-5px);
             }
+
             100% {
                 transform: translateY(0);
             }
         }
+
         .content-section {
-            max-width: 1200px;
-            margin: 40px auto;
+            max-width: 800px;
+            margin: 80px auto;
             padding: 20px;
-            background: white;
+            background: #1a1a1a;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            animation: fadeIn 1.5s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
         }
+
+        .content-section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .content-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             text-align: center;
             margin-bottom: 20px;
         }
+
         .content-text {
             font-size: 1.25rem;
-            line-height: 1.6;
+            line-height: 1.8;
             text-align: justify;
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="header-content">
-            <img src="https://i.imgur.com/6ipToqv.jpeg" alt="Logo">
+            <img src="https://i.imgur.com/HcKKTNL.jpeg" alt="Logo">
             <nav>
-                <a href="index.html" class="nav-link font-bold">Accueil</a>
+                <a href="index.html" class="nav-link">Accueil</a>
                 <a href="articles.html" class="nav-link">Articles</a>
                 <a href="apropos.html" class="nav-link">À propos</a>
                 <a href="contact.html" class="nav-link">Contact</a>
@@ -157,14 +186,13 @@
     </header>
     <section class="hero">
         <div class="hero-content">
-            <h1>À propos de TheFinanceBoy</h1>
-            <p>Découvrez notre histoire et notre mission</p>
+            <h1>À propos</h1>
+            <p>Tous sur mon projet</p>
         </div>
     </section>
-    <section class="content-section">
-        <h2 class="content-title">Notre Mission</h2>
+    <section class="content-section" id="content-section">
+        <h2 class="content-title">Qui suis-je ?</h2>
         <p class="content-text">
-            <!-- Laissez cet espace pour votre contenu -->
             Passionné d'économie et trader forex confirmé, ce site a pour but de classer et de répertorier des articles économiques afin de partager mes avis sur ces derniers.
             Il vous permettra également de comprendre les fondamentaux de l'économie avec un assistant IA, qui servira de base de données pour répondre à vos questions liées au trading et à l'économie.
             Une section trading est également à votre disposition pour suivre mes analyses et mes trades.
@@ -173,6 +201,16 @@
             Les images que j'ai utilisées ont été générées grâce à ChatGPT et Midjourney, et sont toutes répertoriées en ligne sur mon profil Imgur "thefinanceboy". Le site est hébergé gratuitement par Netlify. Si vous avez des questions concernant le site ou autre, n'hésitez pas à visiter l'onglet "contact" et à m'envoyer un mail, je serai ravi d'y répondre. Bonne découverte !
         </p>
     </section>
-</body>
-</html>
 
+    <script>
+        document.addEventListener('scroll', function () {
+            const contentSection = document.getElementById('content-section');
+            const rect = contentSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                contentSection.classList.add('show');
+            }
+        });
+    </script>
+</body>
+
+</html>
