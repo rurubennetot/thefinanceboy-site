@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Mode Animation</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Day and Night Toggle</title>
     <style>
         body {
             margin: 0;
@@ -14,7 +12,6 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: #d3edf8;
         }
 
         svg {
@@ -58,13 +55,18 @@
         }
     </style>
 </head>
-
 <body>
-    <div id="background"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+    <div id="background">On change de thème ?</div>
+
     <div id="day"></div>
     <div id="night"></div>
 
-    <svg version="1.1" id="darkmode" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="369px" height="171.667px" viewBox="0 0 369 171.667" enable-background="new 0 0 369 171.667" xml:space="preserve">
+    <svg version="1.1" id="darkmode" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         width="369px" height="171.667px" viewBox="0 0 369 171.667" enable-background="new 0 0 369 171.667" xml:space="preserve">
+        <!-- SVG content goes here -->
         <g>
             <polygon class="star" id="star-1" fill="#A2B5BF" points="166.253,132.982 164.364,135.676 160.983,136.488 163.196,138.965 162.996,142.16 
                 166.253,140.998 169.509,142.16 169.309,138.965 171.522,136.488 168.142,135.676"/>
@@ -182,6 +184,30 @@
                 </g>
             </g>
         </g>
+        <g>
+            <g id="sun">
+                <g>
+                    <g>
+                        <path fill="#F4E962" d="M255.661,153.638c-18.113,0-35.144-7.054-47.951-19.862c-12.809-12.808-19.862-29.838-19.862-47.951
+                            s7.054-35.144,19.862-47.951c12.808-12.809,29.838-19.862,47.951-19.862c18.114,0,35.144,7.054,47.952,19.862
+                            c12.808,12.808,19.861,29.838,19.861,47.951s-7.054,35.144-19.861,47.951C290.805,146.584,273.775,153.638,255.661,153.638z"/>
+                        <path fill="#F9C941" d="M255.661,21.671c35.431,0,64.153,28.722,64.153,64.153s-28.723,64.153-64.153,64.153
+                            s-64.153-28.723-64.153-64.153S220.23,21.671,255.661,21.671 M255.661,14.35c-9.646,0-19.007,1.891-27.823,5.62
+                            c-8.512,3.601-16.154,8.753-22.717,15.314c-6.562,6.562-11.714,14.205-15.314,22.717c-3.729,8.816-5.62,18.178-5.62,27.823
+                            s1.891,19.007,5.62,27.823c3.601,8.512,8.753,16.155,15.314,22.717c6.563,6.562,14.205,11.714,22.717,15.314
+                            c8.816,3.729,18.178,5.62,27.823,5.62s19.007-1.891,27.823-5.62c8.512-3.601,16.155-8.753,22.717-15.314
+                            c6.563-6.562,11.715-14.205,15.314-22.717c3.729-8.816,5.62-18.178,5.62-27.823s-1.891-19.007-5.62-27.823
+                            c-3.6-8.512-8.752-16.155-15.314-22.717c-6.562-6.562-14.205-11.714-22.717-15.314C274.668,16.241,265.307,14.35,255.661,14.35
+                            L255.661,14.35z"/>
+                    </g>
+                </g>
+            </g>
+            <path id="cloud" fill="#ECF0F1" stroke="#CAD4D8" stroke-width="6" stroke-miterlimit="10" d="M153.269,109.614h2.813
+                c-1.348-2.84-2.124-6.003-2.124-9.354c0-12.083,9.794-21.878,21.877-21.878c7.872,0,14.751,4.172,18.605,10.411
+                c2.121-1.246,4.583-1.974,7.221-1.974c7.889,0,14.285,6.396,14.285,14.285c0,2.1-0.465,4.087-1.277,5.882h6.354
+                c6.604,0,12.007,5.403,12.007,12.007s-5.403,12.006-12.007,12.006h-25.151H179.48h-26.212c-5.881,0-10.692-4.812-10.692-10.692
+                S147.388,109.614,153.269,109.614z"/>
+        </g>
     </svg>
 
     <script>
@@ -189,24 +215,36 @@
         gsap.set("#sun, #cloud, #moon", {x: 15});
         gsap.set(".star", {x: 35, y: -5});
 
-        function toggleToNight() {
+        $("#day").click(function(){
             gsap.to("#sun", 1, {x: -157, opacity: 0, ease: Power1.easeInOut});
             gsap.to("#cloud", .5, {opacity: 0, ease: Power1.easeInOut});
             gsap.to("#moon", 1, {x: -157, rotate: -360, transformOrigin: "center", opacity: 1, ease: Power1.easeInOut});
             gsap.to(".star", .5, {opacity: 1, ease: Power1.easeInOut});
             gsap.to("#night", 1, {background: "#224f6d", borderColor: "#cad4d8", ease: Power1.easeInOut});
             gsap.to("#background", 1, {background: "#0d1f2b", ease: Power1.easeInOut});
-            $("#day").css({"pointer-events": "none"});
+            $(this).css({"pointer-events": "none"});
             
             setTimeout(function(){
                 $("#night").css({"pointer-events": "all"});
                 // Redirection après l'animation
-                window.location.href = "nouvelle_page.html"; // Remplacez par l'URL de la nouvelle page
-            }, 2000); // Attendre 2 secondes pour que l'animation se termine avant la redirection
-        }
+                window.location.href = "nouvelle_page.html";
+            }, 1000);
+        });
 
-        $(document).ready(function() {
-            toggleToNight();
+        $("#night").click(function(){
+            gsap.to("#sun", 1, {x: 15, opacity: 1, ease: Power1.easeInOut});
+            gsap.to("#cloud", 1, {opacity: 1, ease: Power1.easeInOut});
+            gsap.to("#moon", 1, {opacity: 0, x: 35, rotate: 360, transformOrigin: "center", ease: Power1.easeInOut});
+            gsap.to(".star", 1, {opacity: 0, ease: Power1.easeInOut});
+            gsap.to("#night", 1, {background: "#9cd6ef", borderColor: "#65c0e7", ease: Power1.easeInOut});
+            gsap.to("#background", 1, {background: "#d3edf8", ease: Power1.easeInOut});
+            $(this).css({"pointer-events": "none"});
+            
+            setTimeout(function(){
+                $("#day").css({"pointer-events": "all"});
+                // Redirection après l'animation
+                window.location.href = "nouvelle_page.html";
+            }, 1000);
         });
     </script>
 </body>
