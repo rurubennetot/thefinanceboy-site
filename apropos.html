@@ -213,7 +213,7 @@
 <body>
     <header>
         <div class="header-content">
-            <img src="https://i.imgur.com/HcKKTNL.jpeg" alt="Logo">
+            <img src="https://i.imgur.com/HcKKTNL.jpeg" alt="Logo" data-light-logo="https://i.imgur.com/6ipToqv.jpeg" data-dark-logo="https://i.imgur.com/HcKKTNL.jpeg">
             <nav>
                 <a href="index.html" class="nav-link">Accueil</a>
                 <a href="articles.html" class="nav-link">Articles</a>
@@ -240,20 +240,25 @@
             Les images que j'ai utilisées ont été générées grâce à ChatGPT et Midjourney, et sont toutes répertoriées en ligne sur mon profil Imgur "thefinanceboy". Le site est hébergé gratuitement par Netlify. Si vous avez des questions concernant le site ou autre, n'hésitez pas à visiter l'onglet "contact" et à m'envoyer un mail, je serai ravi d'y répondre. Bonne découverte !
         </p>
     </section>
-
     <script>
         document.addEventListener('scroll', function () {
-            const contentSection = document.getElementById('content-section');
-            const rect = contentSection.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                contentSection.classList.add('show');
-            }
-        });
+                const contentSection = document.getElementById('content-section');
+                const rect = contentSection.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    contentSection.classList.add('show');
+                }
+            });
 
         function toggleTheme() {
-            document.body.classList.toggle('dark');
+            const body = document.body;
+            const logo = document.querySelector('.header-content img');
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                logo.src = logo.getAttribute('data-dark-logo');
+            } else {
+                logo.src = logo.getAttribute('data-light-logo');
+            }
         }
     </script>
-</body>
-
+</body>   
 </html>
