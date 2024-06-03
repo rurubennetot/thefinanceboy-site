@@ -14,6 +14,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            background: #d3edf8;
         }
 
         svg {
@@ -198,15 +199,14 @@
             $("#day").css({"pointer-events": "none"});
             
             setTimeout(function(){
-                $("#night").css({"pointer-events": "all"})
-            }, 1000);
+                $("#night").css({"pointer-events": "all"});
+                // Redirection après l'animation
+                window.location.href = "nouvelle_page.html"; // Remplacez par l'URL de la nouvelle page
+            }, 2000); // Attendre 2 secondes pour que l'animation se termine avant la redirection
         }
 
         $(document).ready(function() {
             toggleToNight();
-            setTimeout(function(){
-                window.location.href = "nouvelle_page.html"; // Remplacez par l'URL de la nouvelle page
-            }, 2000); // Attendre 2 secondes pour que l'animation se termine avant la redirection
         });
     </script>
 </body>
