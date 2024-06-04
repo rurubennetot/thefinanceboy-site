@@ -38,11 +38,14 @@
             outline: none;
             border: none;
             border-radius: 35px;
-            color: rgb(255, 255, 255); /* Default text color */
             font-size: x-large;
             font-family: 'Belanosima', sans-serif;
             cursor: pointer;
             transition: all 0.3s ease;
+        }
+        /* Text color for the central "Trading" button */
+        .central-button .darksoul-button {
+            color: #FFFFFF; /* White */
         }
         /* Individual text colors for each bubble-button */
         .bubble-button:nth-child(2) .darksoul-button { color: #FF6347; } /* Tomato */
@@ -50,16 +53,14 @@
         .bubble-button:nth-child(4) .darksoul-button { color: #32CD32; } /* LimeGreen */
         .bubble-button:nth-child(5) .darksoul-button { color: #FFD700; } /* Gold */
         .bubble-button:nth-child(6) .darksoul-button { color: #DA70D6; } /* Orchid */
-        .bubble-button:nth-child(7) .darksoul-button { color: #40E0D0; } /* Turquoise */
-
         .disclaimer {
             font-family: 'Belanosima', sans-serif;
             position: absolute;
-            bottom: 0px; 
-            left: 0; 
-            margin-left: auto; 
-            right: 0; 
-            margin-right: auto; 
+            bottom: 0px;
+            left: 0;
+            margin-left: auto;
+            right: 0;
+            margin-right: auto;
             width: fit-content;
             color: rgb(82, 82, 82);
             text-align: center;
@@ -106,6 +107,11 @@
         .show-buttons .bubble-button {
             opacity: 1;
         }
+        .bubble-button:nth-child(2) { top: 15%; left: 25%; transform: translate(-50%, 0); }
+        .bubble-button:nth-child(3) { top: 50%; left: 70%; transform: translate(0, -50%); }
+        .bubble-button:nth-child(4) { top: 80%; left: 55%; transform: translate(-50%, 0); }
+        .bubble-button:nth-child(5) { top: 60%; left: 10%; transform: translate(0, -50%); }
+        .bubble-button:nth-child(6) { top: 15%; left: 70%; transform: translate(-50%, -50%); }
     </style>
 </head>
 <body>
